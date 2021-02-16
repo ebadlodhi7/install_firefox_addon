@@ -8,27 +8,27 @@ INSTALL_FLAG="install"
 
 UNINSTALL_FLAG="uninstall"
 
-#引数の長さが1ならば代入
+#Substitute if the argument length is 1
 if [ $# -eq 1 ]; then
    IO=$1
 else
-   echo "引数過不足。処理フラグ (インストール = ${INSTALL_FLAG} /アンインストール = ${UNINSTALL_FLAG}) を指定すること。（1個）"
+   echo "Argument excess or deficiency. Processing flag (installation = ${INSTALL_FLAG} /Uninstall = ${UNINSTALL_FLAG}) To specify. (1 piece)"
    exit 1
 fi
 
 if [ ${IO} = ${INSTALL_FLAG} ]; then
-    echo "インストール"
-    chmod a+rx ${TARGET_SCRIPT} && cp -f ${TARGET_SCRIPT} ${INSTALL_DIR} && echo "インストール成功" && exit 0
-    echo "インストール失敗"
+    echo "Installation"
+    chmod a+rx ${TARGET_SCRIPT} && cp -f ${TARGET_SCRIPT} ${INSTALL_DIR} && echo "Successful installation" && exit 0
+    echo "Installation failure"
     exit 2
 fi
 
 if [ ${IO} = ${UNINSTALL_FLAG} ]; then
-    echo "アンインストール"
-    rm -f "${INSTALL_DIR}/${TARGET_SCRIPT}" && echo "アンインストール成功" && exit 0
-    echo "アンインストール失敗"
+    echo "Uninstall"
+    rm -f "${INSTALL_DIR}/${TARGET_SCRIPT}" && echo "Uninstall successful" && exit 0
+    echo "Uninstall failure"
     exit 3
 fi
 
-echo "引数異常 ${INSTALL}"
+echo "Argument error ${INSTALL}"
 exit 4
